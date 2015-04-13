@@ -145,8 +145,7 @@ class XTC(models.Model):
         blank=True,
         verbose_name="Примечания"
     )
-    #XXX Possible foreign key to ???
-    id_doc = models.IntegerField(verbose_name="Документ")
+    catalog = models.ForeignKey("Catalog", verbose_name="Документ")
     operator = models.CharField(
         max_length=8,
         blank=True,
@@ -406,4 +405,3 @@ class Catalog(models.Model):
         blank=True, null=True,
         verbose_name="AKA_name",
     )
-

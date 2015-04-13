@@ -2,6 +2,9 @@
 
 from django.db import models
 
+from personalies.models import Name
+from samizdat import Catalog
+
 
 class Languages(models.Model):
     """ Язык документа """
@@ -51,8 +54,7 @@ class Reference(models.Model):
         blank=True,
         verbose_name="Страница"
     )
-    #XXX FK to Names structure
-    name = models.IntegerField(verbose_name="Имя")
+    name = models.ForeignKey(Name, verbose_name="Имя")
 
 
 class Category(models.Model):
@@ -79,6 +81,6 @@ class Category(models.Model):
 class TextCategory(models.Model):
     """ Промежуточная таблица для связи документов с категориями """
 
-    text_code = models.IntegerField()
-    category_code = models.IntegerField()
+    catalog = models.ForeignKey(Catalog)
+    category = models.ForeignKey(Category)
     timestamp = models.DateTimeField(blank=True, null=True, auto_now_add=True)
