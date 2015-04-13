@@ -164,7 +164,7 @@ class Catalog(models.Model):
         verbose_name="Номер АС"
     )
     language = models.CharField(
-        max_lenght=2,
+        max_length=2,
         blank=True,
         verbose_name="Язык"
     )
@@ -184,7 +184,7 @@ class Catalog(models.Model):
         verbose_name="Примечания к автору"
     )
     auth_group = models.CharField(
-        max_lenght=100,
+        max_length=100,
         blank=True,
         verbose_name="Группа авторов"
     )
@@ -204,7 +204,7 @@ class Catalog(models.Model):
         verbose_name="Примечания к составу группы"
     )
     signers = models.CharField(
-        max_lenght=255,
+        max_length=255,
         blank=True,
         verbose_name="Подписанты"
     )
@@ -240,6 +240,170 @@ class Catalog(models.Model):
         verbose_name="Тип документа"
     )
     name = models.TextField(blank=True, verbose_name="Название")
-
-
+    name2 = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="Name2"
+    )
+    place = models.CharField(
+        max_length=100,
+        blank=True,
+        verbose_name="Место"
+    )
+    m_ind = models.CharField(
+        max_length=100,
+        blank=True,
+        verbose_name="m-ind"
+    )
+    place_prim = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="PlacePrim"
+    )
+    date = models.CharField(
+        max_length=125,
+        blank=True,
+        verbose_name="Дата"
+    )
+    date_prim = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="DatePrim"
+    )
+    date1 = models.DateTimeField(blank=True, null=True, verbose_name="date1")
+    date2 = models.DateTimeField(blank=True, null=True, verbose_name="date2")
+    reproducing = models.CharField(
+        max_length=15,
+        blank=True, default='',
+        verbose_name="Способ воспроизведения"
+    )
+    authencity = models.CharField(
+        max_length=10,
+        blank=True, default='',
+        verbose_name="Подлинность"
+    )
+    num_copies = models.CharField(
+        max_length=10,
+        blank=True, null=True,
+        verbose_name="Число экземпляров"
+    )
+    correction = models.CharField(
+        max_length=255,
+        blank=True, null=True,
+        verbose_name="Правка"
+    )
+    medium = models.CharField(
+        max_length=35,
+        blank=True, null=True,
+        verbose_name="Носитель"
+    )
+    pages = models.CharField(
+        max_length=50,
+        blank=True, null=True,
+        verbose_name="Страниц"
+    )
+    archive_notes = models.CharField(
+        max_length=50,
+        blank=True, null=True,
+        verbose_name="Архивные примечания"
+    )
+    notes = models.TextField(
+        blank=True, null=True,
+        verbose_name="Примечания"
+    )
+    published = models.TextField(
+        blank=True, null=True,
+        verbose_name="Опубликовано"
+    )
+    tome = models.CharField(
+        max_length=15,
+        blank=True, null=True,
+        verbose_name="Том"
+    )
+    number_mc = models.CharField(
+        max_length=10,
+        blank=True, null=True,
+        verbose_name="Номер МС"
+    )
+    year = models.CharField(
+        max_length=20,
+        blank=True, null=True,
+        verbose_name="Год"
+    )
+    fund = models.CharField(
+        max_length=70,
+        blank=True, null=True,
+        verbose_name="Фонд"
+    )
+    register = models.CharField(
+        max_length=70,
+        blank=True, null=True,
+        verbose_name="Опись"
+    )
+    folder = models.CharField(
+        max_length=10,
+        blank=True, null=True,
+        verbose_name="Дело"
+    )
+    sheets = models.CharField(
+        max_length=50,
+        blank=True, null=True,
+        verbose_name="Листы"
+    )
+    annotation = models.TextField(
+        blank=True, null=True,
+        verbose_name="Аннотация"
+    )
+    web_address = models.CharField(
+        max_length=255,
+        blank=True, null=True,
+        verbose_name="Адрес документа"
+    )
+    nas = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="NAS"
+    )
+    nas_ind = models.CharField(
+        max_length=28,
+        blank=True, null=True,
+        verbose_name="NAS-ind"
+    )
+    troubles = models.NullBooleanField(verbose_name="Troubles")
+    hr = models.NullBooleanField(
+        verbose_name="Число экземпляров",
+        helper_text="Отметка о том, что документ упоминается в Хронике"
+    )
+    hr_search = models.NullBooleanField(
+        verbose_name="hr_poisk",
+        helper_text="Отметка для фильтра по номеру ХТС"
+    )
+    operator = models.CharField(
+        max_length=10,
+        blank=True, null=True,
+        verbose_name="Оператор",
+        helper_text="Имя оператора, вводящего запись"
+    )
+    registration_date = models.DateTimeField(
+        blank=True, null=True,
+        verbose_name="Дата ввода",
+        helper_text="Дата ввода оператором(проставляется автоматически)",
+        auto_now_add=True
+    )
+    ready = models.NullBooleanField(
+        verbose_name="Ready",
+        helper_text="Отметка для записей, обработанных на авторство по Именнику"
+    )
+    belles_lettres = models.NullBooleanField(
+        verbose_name="Художка",
+    )
+    link = models.CharField(
+        max_length=255,
+        blank=True, null=True,
+        verbose_name="Ссылка",
+    )
+    aka_name = models.CharField(
+        max_length=255,
+        blank=True, null=True,
+        verbose_name="AKA_name",
+    )
 
