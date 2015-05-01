@@ -97,7 +97,7 @@ class WikiTexts(models.Model):
         verbose_name="Название"
     )
     timestamp = models.DateTimeField(
-        auto_now_add=True,
+        auto_now_add=True, null=True,
         verbose_name="Дата")
     oborotka = models.TextField(
         blank=True, default='',
@@ -126,7 +126,7 @@ class XTC(models.Model):
     pages = models.CharField(
         max_length=50,
         verbose_name="Номера страниц",
-        helper_text="Номера страниц хроники, на которых упомянут документ"
+        help_text="Номера страниц хроники, на которых упомянут документ"
     )
     pages_from = models.IntegerField(
         blank=True, null=True,
@@ -136,7 +136,7 @@ class XTC(models.Model):
         verbose_name="Последняя страница диапазона")
     profile = models.CharField(
         max_length=20,
-        blank=True, default='',
+        blank=True,
         verbose_name="Профиль упоминания",
         default="упом."
     )
@@ -151,7 +151,8 @@ class XTC(models.Model):
         blank=True, default='',
         verbose_name="Оператор"
     )
-    date = models.DateField(auto_now_add=True, verbose_name="Дата ввода")
+    date = models.DateField(
+        auto_now_add=True, null=True, verbose_name="Дата ввода")
 
 
 class Catalog(models.Model):
@@ -370,27 +371,27 @@ class Catalog(models.Model):
     troubles = models.NullBooleanField(verbose_name="Troubles")
     hr = models.NullBooleanField(
         verbose_name="Число экземпляров",
-        helper_text="Отметка о том, что документ упоминается в Хронике"
+        help_text="Отметка о том, что документ упоминается в Хронике"
     )
     hr_search = models.NullBooleanField(
         verbose_name="hr_poisk",
-        helper_text="Отметка для фильтра по номеру ХТС"
+        help_text="Отметка для фильтра по номеру ХТС"
     )
     operator = models.CharField(
         max_length=10,
         blank=True, null=True,
         verbose_name="Оператор",
-        helper_text="Имя оператора, вводящего запись"
+        help_text="Имя оператора, вводящего запись"
     )
     registration_date = models.DateTimeField(
         blank=True, null=True,
         verbose_name="Дата ввода",
-        helper_text="Дата ввода оператором(проставляется автоматически)",
+        help_text="Дата ввода оператором(проставляется автоматически)",
         auto_now_add=True
     )
     ready = models.NullBooleanField(
         verbose_name="Ready",
-        helper_text="Отметка для записей, обработанных на авторство по Именнику"
+        help_text="Отметка для записей, обработанных на авторство по Именнику"
     )
     belles_lettres = models.NullBooleanField(
         verbose_name="Художка",

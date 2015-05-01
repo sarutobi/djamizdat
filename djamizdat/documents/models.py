@@ -3,7 +3,7 @@
 from django.db import models
 
 from personalies.models import Name
-from samizdat import Catalog
+from samizdat.models import Catalog
 
 
 class Languages(models.Model):

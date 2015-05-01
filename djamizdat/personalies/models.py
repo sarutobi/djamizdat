@@ -4,6 +4,7 @@ from django.db import models
 
 from samizdat.models import Catalog
 
+
 class Name(models.Model):
     """ Именник """
 
@@ -22,7 +23,9 @@ class Name(models.Model):
 class Author(models.Model):
     """ Описание автора """
 
-    catalog = models.ForeignKey(verbose_name="Код каталога")
+    catalog = models.ForeignKey(
+        Catalog, null=True,
+        verbose_name="Код каталога", related_name='catalog_FK')
     #XXX Possible foreign key to Names
     names_code = models.IntegerField(verbose_name="Код именник")
     status = models.CharField(
@@ -41,7 +44,8 @@ class Author(models.Model):
     )
     date = models.DateField(
         auto_now_add=True,
-        verbose_name="Дата занесения"
+        verbose_name="Дата занесения",
+        null=True
     )
 
 
