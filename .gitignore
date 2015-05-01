@@ -33,3 +33,6 @@ docs/_build/
 
 #Exclude local settings
 *_local.py
+
+#Exclude sqlite database
+*.sqlite3
