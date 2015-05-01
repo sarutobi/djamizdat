@@ -11,7 +11,7 @@ class Languages(models.Model):
 
     language = models.CharField(
         max_length=50,
-        blank=True,
+        blank=True, default='',
         verbose_name="Язык"
     )
 
@@ -21,7 +21,7 @@ class Docname(models.Model):
 
     docname = models.CharField(
         max_length=50,
-        blank=True,
+        blank=True, default='',
         verbose_name="Наименование документа"
     )
 
@@ -41,17 +41,17 @@ class Reference(models.Model):
 
     ACnumber = models.CharField(
         max_length=28,
-        blank=True,
+        blank=True, default='',
         verbose_name="НомерАС"
     )
     notes = models.CharField(
         max_length=100,
-        blank=True,
+        blank=True, default='',
         verbose_name="Примечания"
     )
     page = models.CharField(
         max_length=15,
-        blank=True,
+        blank=True, default='',
         verbose_name="Страница"
     )
     name = models.ForeignKey(Name, verbose_name="Имя")

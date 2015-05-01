@@ -9,12 +9,12 @@ class Name(models.Model):
 
     name = models.CharField(
         max_length=255,
-        blank=True,
+        blank=True, default='',
         verbose_name="Имя"
     )
     info = models.CharField(
         max_length=255,
-        blank=True,
+        blank=True, default='',
         verbose_name="Информация"
     )
 
@@ -27,7 +27,7 @@ class Author(models.Model):
     names_code = models.IntegerField(verbose_name="Код именник")
     status = models.CharField(
         max_length=30,
-        blank=True,
+        blank=True, default='',
         verbose_name="Статус"
     )
     note = models.TextField(
@@ -50,15 +50,15 @@ class Receiver(models.Model):
 
     person = models.CharField(
         max_length=50,
-        blank=True,
+        blank=True, default='',
         verbose_name="Адресат-персона")
     title = models.CharField(
         max_length=50,
-        blank=True,
+        blank=True, default='',
         verbose_name="Адресат-титул")
     group = models.CharField(
         max_length=120,
-        blank=True,
+        blank=True, default='',
         verbose_name="Адресат-группа")
     #XXX Possible foreign key to docs?
     id_doc = models.IntegerField(verbose_name="id_doc")
