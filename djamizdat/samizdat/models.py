@@ -2,6 +2,8 @@
 
 from django.db import models
 
+# from documents.models import Languages
+
 
 class WikiTexts(models.Model):
     """ Текст для вики """
@@ -169,11 +171,12 @@ class Catalog(models.Model):
         blank=True, default='',
         verbose_name="Номер АС"
     )
-    language = models.CharField(
-        max_length=2,
-        blank=True, default='',
-        verbose_name="Язык"
-    )
+    # language = models.CharField(
+        # max_length=2,
+        # blank=True, default='',
+        # verbose_name="Язык"
+    # )
+    language = models.ForeignKey("documents.Languages", db_column="language")
     translated = models.CharField(
         max_length=2,
         blank=True, default='',
@@ -414,4 +417,4 @@ class Catalog(models.Model):
     )
 
     def __unicode__(self):
-        return self.name
+        return self.name[0:60]

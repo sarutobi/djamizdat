@@ -8,6 +8,11 @@ from samizdat.models import Catalog
 class Name(models.Model):
     """ Именник """
 
+    class Meta:
+        verbose_name = "Имя"
+        verbose_name_plural = "Имена"
+        ordering = ['name', ]
+
     name = models.CharField(
         max_length=255,
         blank=True, default='',
@@ -19,15 +24,21 @@ class Name(models.Model):
         verbose_name="Информация"
     )
 
+    def __unicode__(self):
+        return self.name
+
 
 class Author(models.Model):
     """ Описание автора """
 
+    class Meta:
+        ordering = ["names_code", "catalog"]
     catalog = models.ForeignKey(
         Catalog, null=True,
         verbose_name="Код каталога", related_name='catalog_FK')
     #XXX Possible foreign key to Names
-    names_code = models.IntegerField(verbose_name="Код именник")
+    # names_code = models.IntegerField(verbose_name="Код именник")
+    names_code = models.ForeignKey(Name, verbose_name=u"Код именник", db_column="names_code")
     status = models.CharField(
         max_length=30,
         blank=True, default='',
@@ -48,6 +59,9 @@ class Author(models.Model):
         null=True
     )
 
+    def __unicode__(self):
+        return self.names_code.name
+
 
 class Receiver(models.Model):
     """ Адресат """
@@ -66,3 +80,6 @@ class Receiver(models.Model):
         verbose_name="Адресат-группа")
     #XXX Possible foreign key to docs?
     id_doc = models.IntegerField(verbose_name="id_doc")
+
+    def __unicode__(self):
+        return self.person
