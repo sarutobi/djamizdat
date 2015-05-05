@@ -14,22 +14,22 @@ class WikiTexts(models.Model):
     red_zag = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="редакционный заголовок"
     )
     author = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Автор"
     )
     translator = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Переводчик"
     )
     editor = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Редактор"
     )
     data_n = models.CharField(
         max_length=255,
@@ -54,12 +54,12 @@ class WikiTexts(models.Model):
     zhanr = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Жанр"
     )
     picture = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Изображение"
     )
     samizdat = models.CharField(
         max_length=255,
@@ -69,7 +69,7 @@ class WikiTexts(models.Model):
     categories = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Категории"
     )
     title = models.CharField(
         max_length=255,
@@ -79,22 +79,22 @@ class WikiTexts(models.Model):
     link = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Ссылка"
     )
     user = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="Пользователь"
     )
     ruwiki = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="RU wiki"
     )
     enwiki = models.CharField(
         max_length=255,
         blank=True, default='',
-        verbose_name="Название"
+        verbose_name="EN wiki"
     )
     timestamp = models.DateTimeField(
         auto_now_add=True, null=True,
@@ -103,6 +103,9 @@ class WikiTexts(models.Model):
         blank=True, default='',
         verbose_name="Оборотка"
     )
+
+    def __unicode__(self):
+        return self.nazv
 
 
 class TXTC(models.Model):
@@ -153,6 +156,9 @@ class XTC(models.Model):
     )
     date = models.DateField(
         auto_now_add=True, null=True, verbose_name="Дата ввода")
+
+    def __unicode__(self):
+        return self.number
 
 
 class Catalog(models.Model):
@@ -370,7 +376,7 @@ class Catalog(models.Model):
     )
     troubles = models.NullBooleanField(verbose_name="Troubles")
     hr = models.NullBooleanField(
-        verbose_name="Число экземпляров",
+        verbose_name="В хронике",
         help_text="Отметка о том, что документ упоминается в Хронике"
     )
     hr_search = models.NullBooleanField(
@@ -406,3 +412,6 @@ class Catalog(models.Model):
         blank=True, null=True,
         verbose_name="AKA_name",
     )
+
+    def __unicode__(self):
+        return self.name
