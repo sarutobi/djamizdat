@@ -38,7 +38,6 @@ def get_datetime_value(parent, node_name):
     return None
 
 
-
 def load_docname(conn):
     t_query = "insert into documents_docname(id, docname) values (?, ?);"
     tree = parse_file("DOCNAME")
@@ -127,8 +126,7 @@ def load_name(conn):
         data.append((
             int(lng.find(u"Код1").text),
             lng.find(u"Имя").text,
-            # XXX Insert correct field
-            '',
+            get_node_value(lng, "Инфо"),
         ))
     store_data(conn, t_query, data)
 
@@ -190,8 +188,7 @@ def load_wiki(conn):
             get_node_value(lng, "user"),
             get_node_value(lng, "ruwiki"),
             get_node_value(lng, "enwiki"),
-            # XXX Get correct field name
-            None,
+            get_datetime_value(lng, "timestamp"),
             get_node_value(lng, "oborotka"),
         ))
     store_data(conn, t_query, data)
@@ -218,54 +215,68 @@ def load_xtc(conn):
 
 
 def load_catalog(conn):
-    t_query = "insert into samizdat_catalog values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+    t_query = "insert into samizdat_catalog values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);" #53 params
     tree = parse_file("Каталог")
     data = []
     for lng in tree.findall(u"Каталог"):
         data.append((
             get_int_value(lng, u"Код"),
+            get_node_value(lng, u"НомерАС"),
             get_node_value(lng, u"Язык"),
+            get_node_value(lng, u"Translated"),
             get_node_value(lng, u"Автор"),
+            get_node_value(lng, u"AvtPrim"),
+            get_node_value(lng, u"ГруппаАвт"),
+            get_node_value(lng, u"GrAvtMembers"),
+            get_node_value(lng, u"Подписанты"),
+            get_node_value(lng, u"Podpisant"),
+            get_node_value(lng, u"РедакторыСоставители"),
+            get_node_value(lng, u"EditorsSostPrim"),
+            get_node_value(lng, u"Самоназвание"),
+            get_node_value(lng, u"Name1"),
             get_node_value(lng, u"TypeDoc"),
             get_node_value(lng, u"Название"),
+            get_node_value(lng, u"Name2"),
             get_node_value(lng, u"Место"),
+            get_node_value(lng, u"M-ind"),
             get_node_value(lng, u"PlacePrim"),
             get_node_value(lng, u"Дата"),
             get_node_value(lng, u"DatePrim"),
             get_datetime_value(lng, u"Date1"),
+            get_datetime_value(lng, u"Date2"),
+            get_node_value(lng, u"Способ воспроизведения"),
+            get_node_value(lng, u"Подлинность"),
+            get_node_value(lng, u"Количество экземпляров"),
+            get_node_value(lng, u"Правка"),
+            get_node_value(lng, u"Носитель"),
+            get_node_value(lng, u"Страниц"),
+            get_node_value(lng, u"Архивные примечания"),
+            get_node_value(lng, u"Примечания"),
+            get_node_value(lng, u"Опубликован"),
+            get_node_value(lng, u"Том"),
+            get_node_value(lng, u"ВыпускМС"),
+            get_node_value(lng, u"Год"),
+            get_node_value(lng, u"Фонд"),
+            get_node_value(lng, u"Опись"),
+            get_node_value(lng, u"Дело"),
+            get_node_value(lng, u"Листы"),
+            get_node_value(lng, u"Аннотация"),
+            get_node_value(lng, u"Адрес документа"),
+            get_int_value(lng, u"NAS"),
+            get_node_value(lng, u"NAS-ind"),
             get_node_value(lng, u"Troubles"),
             get_node_value(lng, u"Hr"),
             get_node_value(lng, u"HrPoisk"),
+            get_node_value(lng, u"Оператор"),
+            get_datetime_value(lng, u"Дата ввода"),
             get_node_value(lng, u"Ready"),
             get_node_value(lng, u"Художка"),
             get_node_value(lng, u"Ссылка"),
-            get_node_value(lng, u"user"),
-            get_node_value(lng, u"ruwiki"),
-            get_node_value(lng, u"enwiki"),
-            get_int_value(lng, "ID_TRUE"),
-            get_node_value(lng, u"nazv"),
-            get_node_value(lng, u"red_zag"),
-            get_node_value(lng, u"avtor"),
-            get_node_value(lng, u"perevodchik"),
-            get_node_value(lng, u"redaktor"),
-            get_node_value(lng, u"data_n"),
-            get_node_value(lng, u"mesto_n"),
-            get_node_value(lng, u"data_i"),
-            get_node_value(lng, u"mesto_i"),
-            get_node_value(lng, u"zhanr"),
-            get_node_value(lng, u"picture"),
-            get_node_value(lng, u"samizdat"),
-            get_node_value(lng, u"kategorii"),
-            get_node_value(lng, u"title"),
-            get_node_value(lng, u"link"),
-            get_node_value(lng, u"user"),
-            get_node_value(lng, u"ruwiki"),
-            get_node_value(lng, "enwiki"),
-            # XXX Get correct field name
-            None,
-            get_node_value(lng, "oborotka"),
+            get_node_value(lng, u"AKA_Name"),
         ))
     store_data(conn, t_query, data)
+
+
 def load_all():
     con = None
     try:
