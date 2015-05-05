@@ -14,7 +14,7 @@ def parse_file(dname):
 
 def store_data(conn, query, data):
     conn.executemany(query, data)
-    conn.rollback()
+    conn.commit()
 
 
 def get_int_value(parent, node_name):
@@ -32,7 +32,10 @@ def get_node_value(parent, node_name):
 
 
 def get_datetime_value(parent, node_name):
-    n = parent.find(node_name)
+    try:
+        n = parent.find(node_name)
+    except ValueError:
+        n = None
     if n is not None:
         return datetime.strptime(n.text, "%Y-%m-%dT%H:%M:%S")
     return None
@@ -126,7 +129,7 @@ def load_name(conn):
         data.append((
             int(lng.find(u"Код1").text),
             lng.find(u"Имя").text,
-            get_node_value(lng, "Инфо"),
+            get_node_value(lng, u"Инфо"),
         ))
     store_data(conn, t_query, data)
 
@@ -283,7 +286,6 @@ def load_all():
         con = lite.connect("../djamizdat/db.sqlite3")
         load_docname(con)
         load_languages(con)
-        # load_typedoc(con)
         load_reference(con)
         load_category(con)
         load_txtcategory(con)
@@ -292,6 +294,7 @@ def load_all():
         load_receiver(con)
         load_wiki(con)
         load_xtc(con)
+        load_catalog(con)
     except lite.Error, e:
         print "error:{0}".format(e.args[0])
         sys.exit(1)

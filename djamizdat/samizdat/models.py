@@ -188,21 +188,21 @@ class Catalog(models.Model):
         blank=True, default='',
         verbose_name="Группа авторов"
     )
-    auth_group_notes = models.CharField(
-        max_length=255,
-        blank=True, default='',
-        verbose_name="Примечания к группе авторов"
-    )
+    # auth_group_notes = models.CharField(
+        # max_length=255,
+        # blank=True, default='',
+        # verbose_name="Примечания к группе авторов"
+    # )
     group_members = models.CharField(
         max_length=255,
         blank=True, default='',
         verbose_name="Состав группы"
     )
-    members_notes = models.CharField(
-        max_length=255,
-        blank=True, default='',
-        verbose_name="Примечания к составу группы"
-    )
+    # members_notes = models.CharField(
+        # max_length=255,
+        # blank=True, default='',
+        # verbose_name="Примечания к составу группы"
+    # )
     signers = models.CharField(
         max_length=255,
         blank=True, default='',
