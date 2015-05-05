@@ -225,7 +225,7 @@ def load_catalog(conn):
         data.append((
             get_int_value(lng, u"Код"),
             get_node_value(lng, u"НомерАС"),
-            get_node_value(lng, u"Язык"),
+            get_int_value(lng, u"Язык"),
             get_node_value(lng, u"Translated"),
             get_node_value(lng, u"Автор"),
             get_node_value(lng, u"AvtPrim"),
