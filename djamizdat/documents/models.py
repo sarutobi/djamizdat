@@ -9,11 +9,18 @@ from samizdat.models import Catalog
 class Languages(models.Model):
     """ Язык документа """
 
+    class Meta:
+        verbose_name = "Язык"
+        verbose_name_plural = "Языки"
+
     language = models.CharField(
         max_length=50,
         blank=True, default='',
         verbose_name="Язык"
     )
+
+    def __unicode__(self):
+        return self.language
 
 
 class Docname(models.Model):
@@ -25,15 +32,24 @@ class Docname(models.Model):
         verbose_name="Наименование документа"
     )
 
+    def __unicode__(self):
+        return self.docname
+
 
 class TypeDoc(models.Model):
     """ Тип документа """
+    class Meta:
+        verbose_name = "Тип документа"
+        verbose_name_plural = "Типы документов"
 
     doctype = models.CharField(
         max_length=25,
         primary_key=True,
         verbose_name="Тип документа"
     )
+
+    def __unicode__(self):
+        return self.doctype
 
 
 class Reference(models.Model):
@@ -76,6 +92,9 @@ class Category(models.Model):
         max_length=255,
         verbose_name="Полный путь категории"
     )
+
+    def __unicode__(self):
+        return self.name
 
 
 class TextCategory(models.Model):
