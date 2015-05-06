@@ -176,7 +176,10 @@ class Catalog(models.Model):
         # blank=True, default='',
         # verbose_name="Язык"
     # )
-    language = models.ForeignKey("documents.Languages", db_column="language")
+    language = models.ForeignKey(
+        "documents.Languages",
+        db_column="language",
+        null=True)
     translated = models.CharField(
         max_length=2,
         blank=True, default='',
