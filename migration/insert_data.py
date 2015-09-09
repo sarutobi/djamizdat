@@ -140,15 +140,16 @@ def load_authors(conn):
     data = []
     for lng in tree.findall(u"Авторы"):
         data.append((
-            int(lng.find(u"ID_Авторы").text),
+            get_int_value(lng, u"ID_Авторы"),
             get_int_value(lng, u"Код_каталог"),
-            int(lng.find(u"Код_именник").text),
-            lng.find(u"Статус").text,
+            get_int_value(lng, u"Код_именник"),
+            get_node_value(lng, u"Статус"),
             get_node_value(lng, u"Примечание"),
             get_node_value(lng, u"Оператор"),
             get_datetime_value(lng, u"Дата")
         ))
     store_data(conn, t_query, data)
+    print ("Authors complete\n")
 
 
 def load_receiver(conn):
@@ -278,6 +279,7 @@ def load_catalog(conn):
             get_node_value(lng, u"AKA_Name"),
         ))
     store_data(conn, t_query, data)
+    print "Wiki complete"
 
 
 def load_all():

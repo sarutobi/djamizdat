@@ -259,7 +259,7 @@ class Catalog(models.Model):
     )
     place = models.CharField(
         max_length=100,
-        blank=True, default='',
+        blank=True, null=True, default='',
         verbose_name="Место"
     )
     m_ind = models.CharField(
@@ -269,7 +269,7 @@ class Catalog(models.Model):
     )
     place_prim = models.CharField(
         max_length=255,
-        blank=True, default='',
+        blank=True, null=True, default='',
         verbose_name="PlacePrim"
     )
     date = models.CharField(

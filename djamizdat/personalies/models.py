@@ -33,12 +33,16 @@ class Author(models.Model):
 
     class Meta:
         ordering = ["names_code", "catalog"]
+
     catalog = models.ForeignKey(
         Catalog, null=True,
         verbose_name="Код каталога", related_name='catalog_FK')
     #XXX Possible foreign key to Names
     # names_code = models.IntegerField(verbose_name="Код именник")
-    names_code = models.ForeignKey(Name, verbose_name=u"Код именник", db_column="names_code")
+    names_code = models.ForeignKey(
+        Name,
+        verbose_name=u"Код именник",
+        db_column="names_code", null=True)
     status = models.CharField(
         max_length=30,
         blank=True, default='',
