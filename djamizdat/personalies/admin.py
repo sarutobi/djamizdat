@@ -6,7 +6,7 @@ from .models import Name, Author, Receiver
 
 
 class AdminAuthor(admin.ModelAdmin):
-    list_display = ("names_code", "catalog", "status")
+    list_display = ("id", "catalog", "status")
 
 
 admin.site.register(Name)
