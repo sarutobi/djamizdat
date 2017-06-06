@@ -36,3 +36,5 @@ docs/_build/
 
 #Exclude sqlite database
 *.sqlite3
+
+/migration/**/*.xml

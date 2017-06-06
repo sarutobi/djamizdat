@@ -8,7 +8,7 @@ from lxml import etree
 
 
 def parse_file(dname):
-    fname = "data/{0}.xml.new.xml".format(dname)
+    fname = "data/{0}.xml".format(dname)
     return etree.parse(fname)
 
 
