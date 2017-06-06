@@ -7,6 +7,9 @@ from django.db import models
 
 class WikiTexts(models.Model):
     """ Текст для вики """
+    class Meta:
+        verbose_name = "Wiki заметка"
+        verbose_name_plural = "Wiki заметки"
 
     nazv = models.CharField(
         max_length=255,
@@ -122,6 +125,9 @@ class TXTC(models.Model):
 
 class XTC(models.Model):
     """ XTC """
+    class Meta:
+        verbose_name = "Карточка"
+        verbose_name_plural = "Карточки"
 
     number = models.CharField(
         max_length=10,
