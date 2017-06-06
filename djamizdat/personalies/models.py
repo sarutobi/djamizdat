@@ -33,6 +33,8 @@ class Author(models.Model):
 
     class Meta:
         ordering = ["names_code", "catalog"]
+        verbose_name = "Автор"
+        verbose_name_plural = "Авторы"
 
     catalog = models.ForeignKey(
         Catalog, null=True,
@@ -69,6 +71,10 @@ class Author(models.Model):
 
 class Receiver(models.Model):
     """ Адресат """
+
+    class Meta:
+        verbose_name = "Адресат"
+        verbose_name_plural = "Адресаты"
 
     person = models.CharField(
         max_length=50,

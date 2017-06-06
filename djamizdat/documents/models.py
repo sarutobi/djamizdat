@@ -25,6 +25,9 @@ class Languages(models.Model):
 
 class Docname(models.Model):
     """ Наименование документа """
+    class Meta:
+        verbose_name = "Документ"
+        verbose_name_plural = "Документы"
 
     docname = models.CharField(
         max_length=50,
@@ -54,6 +57,9 @@ class TypeDoc(models.Model):
 
 class Reference(models.Model):
     """ Ссылки """
+    class Meta:
+        verbose_name = "Ссылка"
+        verbose_name_plural = "Ссылки"
 
     ACnumber = models.CharField(
         max_length=28,
@@ -75,6 +81,9 @@ class Reference(models.Model):
 
 class Category(models.Model):
     """ Категории документа """
+    class Meta:
+        verbose_name = "Категория"
+        verbose_name_plural = "Категории"
 
     parent_code = models.ForeignKey(
         "Category",
