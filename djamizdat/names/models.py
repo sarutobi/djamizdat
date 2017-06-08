@@ -41,3 +41,4 @@ class Name(models.Model):
     verified = models.BooleanField(verbose_name="Просмотрена Хр")
     geo = models.CharField(
         max_length=255, blank=True, null=True, verbose_name="География")
+
